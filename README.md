@@ -1,4 +1,18 @@
+
+
+### Live Link: 
+[https://spaced-repitition-rebecca-seyi.vercel.app](https://spaced-repitition-rebecca-seyi.vercel.app)
+
+### Server Repo:
+[https://github.com/thinkful-ei-panda/Spaced-Repetition-Server-Rebecca-Seyi](https://github.com/thinkful-ei-panda/Spaced-Repetition-Server-Rebecca-Seyi)
+
 # Spaced repetition API!
+
+### Summary
+
+The user will have the option to log in or sign up, and then will be directed to a dashboard displaying their total correct answer, a list of French words to memorize, as well as the number of times they got each word wrong or right. 
+
+<br />
 
 ## Local dev setup
 
@@ -50,3 +64,30 @@ Run the tests mode `npm test`
 Run the migrations up `npm run migrate`
 
 Run the migrations down `npm run migrate -- 0`
+
+
+## Routes
+### Auth Routes
+
+#### POST api/auth/token
+This post route requires a {username,password} in request body and log in a user.
+This route is used to login to the server and return a jwt token for a user to store in local storage.
+
+### User Routes
+
+####  POST api/user
+This post route requires a {username,password} in request body and post anew user in the database.
+This route is used to create a whole new user in the DB.
+
+
+### Language Routes
+before any request to this route requires auth token to get data from the database.
+
+####  GET api/language
+This route gets all the languages and words for that language with all neccessary information for it.
+
+####  GET api/language/head
+This route gets the head of the words list of the current language the user is using.
+
+####  POST api/language/guess
+This post requires {guess} in request body and lets user post a guess into the database. This routes checks for the current head and compares the guess inserted to the current head of the list.It decrements or increments if the guess is correct or wrong and changes the database current head to the next question.Uses a linked list implementation to establish the list and get populated back into the DB.
